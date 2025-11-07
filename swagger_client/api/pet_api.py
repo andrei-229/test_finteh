@@ -475,6 +475,7 @@ class PetApi(object):
                     " to method get_pet_by_id" % key
                 )
             params[key] = val
+        
         del params['kwargs']
         # verify the required parameter 'pet_id' is set
         if self.api_client.client_side_validation and ('pet_id' not in params or
