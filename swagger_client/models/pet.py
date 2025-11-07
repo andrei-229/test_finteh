@@ -135,8 +135,8 @@ class Pet(object):
         :param name: The name of this Pet.  # noqa: E501
         :type: str
         """
-        if self._configuration.client_side_validation and name is None:
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+        # if self._configuration.client_side_validation and name is None:
+        #     raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -158,8 +158,8 @@ class Pet(object):
         :param photo_urls: The photo_urls of this Pet.  # noqa: E501
         :type: list[str]
         """
-        if self._configuration.client_side_validation and photo_urls is None:
-            raise ValueError("Invalid value for `photo_urls`, must not be `None`")  # noqa: E501
+        # if self._configuration.client_side_validation and photo_urls is None:
+        #     raise ValueError("Invalid value for `photo_urls`, must not be `None`")  # noqa: E501
 
         self._photo_urls = photo_urls
 
