@@ -50,5 +50,6 @@ def test_update_pet():
     assert res.json()['name'] == pet['name'], f"Запись не соответствует ожидаемой: {res.json()['name']} != {pet['name']}"
 
 def test_delete_pet():
-    res = requests.delete(f"{BASE_URL}/pet/123456")
+    pet_id = random.randint(1000000, 9999999)
+    res = requests.delete(f"{BASE_URL}/pet/{pet_id}")
     assert res.status_code in [200, 404]
