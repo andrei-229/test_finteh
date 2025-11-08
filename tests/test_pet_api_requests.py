@@ -13,7 +13,7 @@ def test_create_pet():
     }
     res = requests.post(f"{BASE_URL}/pet", json=pet)
     assert res.status_code == 200
-    assert res.json()["name"] == pet["name"], f"Запись не соответствует ожидаемой: {res.json()['name']} != {pet["name"]}"
+    assert res.json()["name"] == pet["name"], f"Запись не соответствует ожидаемой: {res.json()['name']} != {pet['name']}"
 
 def test_get_pet():
     pet_id = random.randint(1000000, 9999999)
