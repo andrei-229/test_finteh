@@ -27,7 +27,7 @@ def test_get_pet():
         pytest.xfail(f"Ошибка API при добавлении питомца")
     res = requests.get(f"{BASE_URL}/pet/{pet_id}")
     assert res.status_code == 200
-    assert res.json()['name'] == pet["name"], f"Запись не соответствует ожидаемой: {res.json()['name']} != {pet["name"]}"
+    assert res.json()['name'] == pet["name"], f"Запись не соответствует ожидаемой: {res.json()['name']} != {pet['name']}"
 
 def test_update_pet():
     pet_id = random.randint(1000000, 9999999)
