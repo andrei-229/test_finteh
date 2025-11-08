@@ -1,4 +1,9 @@
 # Проект автотестов для Petstore API
+
+[![API Tests](https://github.com/andrei-229/test_finteh/actions/workflows/tests.yml/badge.svg)](https://github.com/andrei-229/test_finteh/actions/workflows/tests.yml)
+![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)
+![Pytest](https://img.shields.io/badge/pytest-passing-green)
+
 ## Описание
 Задача — реализовать пример автотестов, проверяющих работу публичного API Petstore (https://petstore.swagger.io).
 
@@ -20,18 +25,53 @@
 
 ## Запуск проекта
 
+### Установка зависимостей
 ```sh
 pip install -r requirements.txt
-```
-
-```sh
 python setup.py install
 ```
-(or `sudo python setup.py install` to install the package for all users)
+(или `sudo python setup.py install` для установки для всех пользователей)
 
-## Запустить тесты
+### Запуск тестов
+
+#### Запустить все тесты
 ```sh
 pytest tests/ -v
+```
+
+#### Запустить конкретный файл тестов
+```sh
+# Только Pet API тесты
+pytest tests/test_pet_api.py -v
+
+# Только Store API тесты
+pytest tests/test_store_api.py -v
+
+# Только User API тесты
+pytest tests/test_user_api.py -v
+
+# Тесты через requests
+pytest tests/test_pet_api_requests.py -v
+```
+
+#### Запустить конкретный тест
+```sh
+pytest tests/test_pet_api.py::test_create_and_get_pet -v
+```
+
+#### Запуск с дополнительными опциями
+```sh
+# С HTML отчётом
+pytest tests/ -v --html=report.html --self-contained-html
+
+# С покрытием кода
+pytest tests/ -v --cov=swagger_client --cov-report=html
+
+# Запуск только помеченных тестов
+pytest tests/ -v -m api
+
+# Параллельный запуск (требует pytest-xdist)
+pytest tests/ -v -n auto
 ```
 
 ## Покрытие API
@@ -39,14 +79,21 @@ pytest tests/ -v
 | -------------------- | ---------------------- | -------------------------- | ---------------------------------- |
 | 🐶 **Pet**           | GET, POST, PUT, DELETE | `test_pet_api.py`          | Работа с питомцами                 |
 | 🏪 **Store**         | GET, POST, DELETE      | `test_store_api.py`        | Заказы и инвентарь                 |
-| 👤 **User**          | GET, POST, DELETE      | `test_user_api.py`         | Пользователи, логин                |
+| 👤 **User**          | GET, POST, PUT, DELETE | `test_user_api.py`         | Пользователи, логин, обновление    |
 | 🌐 **Requests Demo** | GET, POST, PUT, DELETE | `test_pet_api_requests.py` | Прямые HTTP-запросы через requests |
+
+## CI/CD
+Проект настроен для автоматического запуска тестов через GitHub Actions:
+- ✅ Запуск при push в main/develop
+- ✅ Запуск при создании Pull Request
+- ✅ Тестирование на Python 3.10, 3.11, 3.12
+- ✅ Автоматическая генерация HTML отчётов
+- ✅ Отчёты о покрытии кода
 
 ## Особенности реализации
 * Тесты используют `try/except ApiException`.
 * Ошибки API не ломают выполнение — тест помечается как XFAIL.
 * Каждый тест независим (используются случайные id).
-
 * Проверяются как позитивные, так и негативные сценарии.
 
 * Возможна интеграция с pytest-html или Allure для отчётности.
