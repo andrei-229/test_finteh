@@ -3,6 +3,7 @@
 [![API Tests](https://github.com/andrei-229/test_finteh/actions/workflows/tests.yml/badge.svg)](https://github.com/andrei-229/test_finteh/actions/workflows/tests.yml)
 ![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Pytest](https://img.shields.io/badge/pytest-passing-green)
+![Requests](https://img.shields.io/badge/python-requests-green)
 
 ## Описание
 Задача — реализовать пример автотестов, проверяющих работу публичного API Petstore (https://petstore.swagger.io).
